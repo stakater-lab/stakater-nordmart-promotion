@@ -23,4 +23,15 @@ public class Promotion extends PanacheEntity {
         }
 
     }
+
+    public static Map<String, Promotion> listActive() {
+        List<Promotion> active = Promotion.list("active = true");
+        Map<String, Promotion> activePromotions = new HashMap<String, Promotion>();
+        if (active != null && !active.isEmpty()) {
+            for (Promotion promotion : active) {
+                activePromotions.put(promotion.itemId, promotion);
+            }
+        }
+        return activePromotions;
+    }
 }

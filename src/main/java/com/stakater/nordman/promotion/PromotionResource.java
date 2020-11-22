@@ -22,6 +22,12 @@ public class PromotionResource {
         List<Promotion> allPromotions = Promotion.listAll();
         return Response.ok(allPromotions).build();
     }
+    @GET
+    @Path("/active")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getActive() {
+        return Response.ok(Promotion.listActive()).build();
+    }
 
     @GET
     @Path("{itemId}")
