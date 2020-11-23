@@ -28,6 +28,12 @@ public class PromotionResource {
     public Response getActive() {
         return Response.ok(Promotion.listActive()).build();
     }
+    @GET
+    @Path("/hello")
+    @Produces(MediaType.TEXT_PLAIN)
+    public String hello() {
+        return "hello";
+    }
 
     @GET
     @Path("{itemId}")
