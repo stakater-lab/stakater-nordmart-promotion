@@ -1,0 +1,75 @@
+application:
+  applicationName: "promotion"
+  deployment:
+    additionalLabels:
+      appCategory: "backend"
+    annotations:
+    resources: 
+      limits:
+         memory: 1Gi
+         cpu: 0.5
+      requests:
+        memory: 128Mi
+        cpu: 0.1
+    imagePullSecrets: nexus-creds
+    image:
+      repository: quay.io/tahonen/nordman-promotion
+      tag: native
+    volumes: {}
+    env:
+    - name: SQL_HOST
+      value: "promotion-sql"
+    - name: SQL_USER
+      value: root
+    - name: SQL_PASSWORD
+      valueFrom:
+        secretKeyRef:
+          name: promotion-sql-secret
+          key:  mysql-root-password
+    probes:
+      readinessProbe:
+        failureThreshold: 3
+        periodSeconds: 10
+        successThreshold: 1
+        timeoutSeconds: 1
+        initialDelaySeconds: 90
+        httpGet:
+          path: /
+          port: 8080
+      livenessProbe:
+        failureThreshold: 3
+        periodSeconds: 10
+        successThreshold: 1
+        timeoutSeconds: 1
+        initialDelaySeconds: 90
+        httpGet:
+          path: /
+          port: 8080
+  service:
+    ports:
+    - port: 8080
+      name: https
+      targetPort: 8080
+  rbac:
+    create: true
+    serviceAccount:
+      enabled: true
+      create: true
+  configMap:
+    enabled: false
+mysql:
+  db:
+    name: nordman-promotion
+  #   user: nordman
+  image:
+    registry: nexus-docker-proxy-openshift-stakater-nexus.apps.binero.06p407u4.kubeapp.cloud
+    pullSecrets: 
+      - nexus-proxy-secret
+  fullnameOverride: promotion-sql
+  existingSecret: promotion-sql-secret
+  replication:
+    enabled: false
+  master:
+    securityContext:
+      enabled: false
+
