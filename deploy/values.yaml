@@ -20,10 +20,7 @@ application:
     - name: SQL_HOST
       value: "promotion-sql"
     - name: SQL_USER
-      valueFrom:
-        secretKeyRef:
-          name: promotion-sql
-          key:  mysql-username
+      value: nordman
     - name: SQL_PASSWORD
       valueFrom:
         secretKeyRef:
