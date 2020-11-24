@@ -18,7 +18,7 @@ application:
     volumes: {}
     env:
     - name: SQL_HOST
-      value: "promotion-sql-secret"
+      value: "promotion-sql"
     - name: SQL_USER
       value: root
     - name: SQL_PASSWORD
