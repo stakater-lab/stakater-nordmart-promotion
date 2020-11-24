@@ -63,7 +63,8 @@ application:
 mysql:
   image:
     registry: nexus-docker-proxy-openshift-stakater-nexus.apps.binero.06p407u4.kubeapp.cloud
-    pullSecrets: nexus-creds
+    pullSecrets: 
+      - nexus-creds
   fullnameOverride: promotion-sql
   existingSecret: promotion-sql-secret
   replication:
