@@ -22,12 +22,12 @@ application:
     - name: SQL_USER
       valueFrom:
         secretKeyRef:
-          name: promotion-sql-secret
+          name: promotion-sql
           key:  mysql-username
     - name: SQL_PASSWORD
       valueFrom:
         secretKeyRef:
-          name: promotion-sql-secret
+          name: promotion-sql
           key:  mysql-password
     probes:
       readinessProbe:
@@ -63,12 +63,13 @@ application:
 mysql:
   db:
     name: nordman-promotion
+    user: nordman
   image:
     registry: nexus-docker-proxy-openshift-stakater-nexus.apps.binero.06p407u4.kubeapp.cloud
     pullSecrets: 
       - nexus-proxy-secret
   fullnameOverride: promotion-sql
-  existingSecret: promotion-sql-secret
+  # existingSecret: promotion-sql-secret
   replication:
     enabled: false
   master:
