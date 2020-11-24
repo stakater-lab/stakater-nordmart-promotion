@@ -18,14 +18,14 @@ application:
     volumes: {}
     env:
     - name: SQL_HOST
-      value: "promotion-sql"
+      value: "promotion-sql-secret"
     - name: SQL_USER
-      value: nordman
+      value: root
     - name: SQL_PASSWORD
       valueFrom:
         secretKeyRef:
-          name: promotion-sql
-          key:  mysql-password
+          name: promotion-sql-secret
+          key:  mysql-root-password
     probes:
       readinessProbe:
         failureThreshold: 3
@@ -66,7 +66,7 @@ mysql:
     pullSecrets: 
       - nexus-proxy-secret
   fullnameOverride: promotion-sql
-  # existingSecret: promotion-sql-secret
+  existingSecret: promotion-sql-secret
   replication:
     enabled: false
   master:
