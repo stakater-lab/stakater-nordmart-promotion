@@ -13,8 +13,8 @@ application:
         cpu: 0.1
     imagePullSecrets: nexus-creds
     image:
-      repository: DEPLOYMENT_IMAGE
-      tag: TAG
+      repository: quay.io/tahonen/nordman-promotion
+      tag: native
     volumes: {}
     env:
     - name: SQL_HOST
@@ -22,12 +22,12 @@ application:
     - name: SQL_USER
       valueFrom:
         secretKeyRef:
-          name: promotion-sql
+          name: promotion-sql-secret
           key:  mysql-username
     - name: SQL_PASSWORD
       valueFrom:
         secretKeyRef:
-          name: promotion-sql
+          name: promotion-sql-secret
           key:  mysql-password
     probes:
       readinessProbe:
