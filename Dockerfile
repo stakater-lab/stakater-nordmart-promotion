@@ -6,8 +6,7 @@ COPY src /usr/src/app/src
 USER root
 RUN chown -R quarkus /usr/src/app
 USER quarkus
-RUN mvn -f /usr/src/app/pom.xml -Pnative off clean package
-
+RUN mvn -f /usr/src/app/pom.xml -Dquarkus.package.type=fast-jar off clean package
 ## Stage 2 : create the docker final image
 FROM registry.access.redhat.com/ubi8/ubi-minimal
 WORKDIR /work/
