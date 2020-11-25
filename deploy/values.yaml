@@ -3,6 +3,8 @@ application:
   deployment:
     additionalLabels:
       appCategory: "backend"
+      app.kubernetes.io/part-of: "promotion"
+      app.kubernetes.io/name: "promotion"
     annotations:
     resources: 
       limits:
