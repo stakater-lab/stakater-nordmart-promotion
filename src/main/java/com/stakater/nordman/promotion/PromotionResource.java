@@ -32,7 +32,7 @@ public class PromotionResource {
     @Path("/hello")
     @Produces(MediaType.TEXT_PLAIN)
     public String hello() {
-        return "hello";
+        return "hello, you!";
     }
 
     @GET
