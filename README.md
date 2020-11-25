@@ -8,7 +8,7 @@ If you want to learn more about Quarkus, please visit its website: https://quark
 
 Promotion API has following dependencies:
 
-- Quarkas
+- Quarkus
 - MySQL
 
 ## Running the application in dev mode
@@ -17,6 +17,10 @@ You can run your application in dev mode that enables live coding using:
 ```
 ./mvnw quarkus:dev
 ```
+
+## Development on CodeReady Workspaces
+
+https://codeready-openshift-stakater-crw.apps.binero.06p407u4.kubeapp.cloud/f?url=https://github.com/stakater-lab/stakater-nordmart-promotion.git
 
 ## Packaging and running the application
 
