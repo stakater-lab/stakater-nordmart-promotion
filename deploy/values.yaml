@@ -64,7 +64,9 @@ mysql:
     username: catalog
   replication:
     enabled: false
-  master:
-    securityContext:
+  primary:
+    podSecurityContext:
+      enabled: false
+    containerSecurityContext:
       enabled: false
 
