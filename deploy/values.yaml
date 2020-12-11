@@ -11,7 +11,7 @@ application:
       requests:
         memory: 128Mi
         cpu: 0.1
-    imagePullSecrets: nexus-creds
+    imagePullSecrets: nexus-docker-config-forked
     image:
       repository: quay.io/tahonen/nordman-promotion
       tag: native
@@ -20,12 +20,12 @@ application:
     - name: SQL_HOST
       value: "promotion-sql"
     - name: SQL_USER
-      value: root
+      value: catalog
     - name: SQL_PASSWORD
       valueFrom:
         secretKeyRef:
-          name: promotion-sql-secret
-          key:  mysql-root-password
+          name: promotion-sql
+          key:  mysql-password
     probes:
       readinessProbe:
         failureThreshold: 3
@@ -59,13 +59,9 @@ application:
     enabled: false
 mysql:
 
-  #   user: nordman
-  image:
-    registry: nexus-docker-proxy-openshift-stakater-nexus.apps.binero.06p407u4.kubeapp.cloud
-    pullSecrets: 
-      - nexus-proxy-secret
   fullnameOverride: promotion-sql
-  existingSecret: promotion-sql-secret
+  auth:
+    username: catalog
   replication:
     enabled: false
   master:
