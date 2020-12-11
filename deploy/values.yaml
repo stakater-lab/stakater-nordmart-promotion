@@ -20,7 +20,7 @@ application:
     - name: SQL_HOST
       value: "promotion-sql"
     - name: SQL_USER
-      value: catalog
+      value: promotion
     - name: SQL_PASSWORD
       valueFrom:
         secretKeyRef:
@@ -61,7 +61,7 @@ mysql:
 
   fullnameOverride: promotion-sql
   auth:
-    username: catalog
+    username: promotion
   replication:
     enabled: false
   primary:
