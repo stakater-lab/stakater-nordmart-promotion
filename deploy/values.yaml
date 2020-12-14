@@ -1,6 +1,16 @@
 application:
   applicationName: "promotion"
+  configMap:
+    enabled: true
+    files:
+    - nameSuffix: ""
+      data:
+        SQL_HOST: promotion-sql"
+        SQL_USER:  root
   deployment:
+    envFrom:
+    - type: configmap
+      name: ""
     additionalLabels:
       appCategory: "backend"
     annotations:
@@ -17,14 +27,10 @@ application:
       tag: native
     volumes: {}
     env:
-    - name: SQL_HOST
-      value: "promotion-sql"
-    - name: SQL_USER
-      value: root
     - name: SQL_PASSWORD
       valueFrom:
         secretKeyRef:
-          name: promotion-sql-secret
+          name: promotion-sql
           key:  mysql-root-password
     probes:
       readinessProbe:
@@ -55,8 +61,6 @@ application:
     serviceAccount:
       enabled: true
       create: true
-  configMap:
-    enabled: false
 mysql:
   db:
     name: nordman-promotion
@@ -66,7 +70,6 @@ mysql:
     pullSecrets: 
       - nexus-proxy-secret
   fullnameOverride: promotion-sql
-  existingSecret: promotion-sql-secret
   replication:
     enabled: false
   master:
