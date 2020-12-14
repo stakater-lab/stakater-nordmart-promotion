@@ -1,5 +1,13 @@
 application:
   applicationName: "promotion"
+  configMap:
+    enabled: true
+    files:
+    - nameSuffix: ""
+      data:
+        SQL_HOST: "promotion-sql"
+        SQL_USER: "promotion"
+        JAEGER_ENDPOINT: "http://jaeger-collector.istio-system:14268/api/traces"
   deployment:
     additionalLabels:
       appCategory: "backend"
@@ -16,11 +24,10 @@ application:
       repository: quay.io/tahonen/nordman-promotion
       tag: native
     volumes: {}
+    envFrom:
+    - type: configmap
+      name: ""    
     env:
-    - name: SQL_HOST
-      value: "promotion-sql"
-    - name: SQL_USER
-      value: promotion
     - name: SQL_PASSWORD
       valueFrom:
         secretKeyRef:
