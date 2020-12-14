@@ -3,7 +3,7 @@ name: helm
 description: A Helm chart for Kubernetes
 dependencies:
 - name: application
-  version: 0.0.29
+  version: 0.0.*
   repository: https://stakater.github.io/stakater-charts
 - name: mysql
   version: 8.0.0
