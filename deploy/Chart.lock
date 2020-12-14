@@ -1,9 +1,0 @@
-dependencies:
-- name: application
-  repository: https://stakater.github.io/stakater-charts
-  version: 0.0.31
-- name: mysql
-  repository: https://charts.bitnami.com/bitnami
-  version: 7.1.0
-digest: sha256:62f897360cd16a068911098b3df740d9e69c32c83935b0f38c5f6b63d2b05bf6
-generated: "2020-12-14T18:58:09.105302705+05:00"
