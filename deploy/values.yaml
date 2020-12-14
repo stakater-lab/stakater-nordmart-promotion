@@ -5,10 +5,12 @@ application:
     files:
     - nameSuffix: ""
       data:
-        SQL_HOST: "promotion-sql"
-        SQL_USER: "promotion"
-        JAEGER_ENDPOINT: "http://jaeger-collector.istio-system:14268/api/traces"
+        SQL_HOST: promotion-sql"
+        SQL_USER:  root
   deployment:
+    envFrom:
+    - type: configmap
+      name: ""
     additionalLabels:
       appCategory: "backend"
     annotations:
@@ -32,7 +34,7 @@ application:
       valueFrom:
         secretKeyRef:
           name: promotion-sql
-          key:  mysql-password
+          key:  mysql-root-password
     probes:
       readinessProbe:
         failureThreshold: 3
@@ -62,13 +64,9 @@ application:
     serviceAccount:
       enabled: true
       create: true
-  configMap:
-    enabled: false
 mysql:
 
   fullnameOverride: promotion-sql
-  auth:
-    username: promotion
   replication:
     enabled: false
   primary:
