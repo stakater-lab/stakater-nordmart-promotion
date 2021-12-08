@@ -65,7 +65,8 @@ application:
       enabled: true
       create: true
 mysql:
-
+  auth:
+    rootPassword: sdfkljl
   fullnameOverride: promotion-sql
   replication:
     enabled: false
