@@ -1,7 +1,7 @@
 apiVersion: tronador.stakater.com/v1alpha1
 kind: EnvironmentProvisioner
 metadata:
-  generateName: stakater-nordmart-promotion-
+  name: stakater-nordmart-promotion-pr-11
 spec:
   application:
     release:
