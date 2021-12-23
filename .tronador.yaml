@@ -1,25 +1,17 @@
-version: v1alpha1
-targetBranches:
-  - main
-application:
-  chartPath: "deploy/"
-  chartVarsPath:
-    - "values.yaml"
-dependencies:
-  repositories:
-    - name: backend
-      repository: github/stakater-lab 
-      chartPath: deploy
-      chartVarsRepoPath:
-      - "values.yaml"
-      valueOverrides:
-      - "some.value=foobar"
-  charts:
-    - name: wordpress
-      chartRepoPath: https://charts.bitnami.com/bitnami
-      version: 12.0.3
-      requires:
-      - nginx
-    - name: nginx
-      chartRepoPath: https://charts.bitnami.com/bitnami
-      version: 9.4.2
+apiVersion: tronador.stakater.com/v1alpha1
+kind: EnvironmentProvisioner
+metadata:
+  name: stakater-nordmart-promotion-pr-9
+spec:
+  application:
+    release:
+      chart:
+        git: https://github.com/stakater-lab/stakater-nordmart-promotion
+        ref: add-tronador-yaml
+        path: "deploy/"
+      releaseName: add-tronador-yaml
+      values:
+        application:
+          deployment:
+            image:
+              tag: "native"
