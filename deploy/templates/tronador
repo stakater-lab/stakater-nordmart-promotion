@@ -1,0 +1,18 @@
+---
+apiVersion: tronador.stakater.com/v1alpha1
+kind: EnvironmentProvisioner
+metadata:
+  name: NA
+spec:
+  application:
+    release:
+      chart:
+        git: NA
+        ref: NA
+        path: "deploy/"
+      releaseName: NA
+      values:
+        application:
+          deployment:
+            image:
+              tag: NA
